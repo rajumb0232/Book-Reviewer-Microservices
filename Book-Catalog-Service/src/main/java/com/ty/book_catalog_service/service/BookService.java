@@ -12,6 +12,7 @@ import com.ty.book_catalog_service.dao.BookDao;
 import com.ty.book_catalog_service.dto.BookRequest;
 import com.ty.book_catalog_service.dto.BookResponse;
 import com.ty.book_catalog_service.entity.Book;
+import com.ty.book_catalog_service.exception.BookNotFoundByIdException;
 
 @Service
 public class BookService {
@@ -35,6 +36,15 @@ public class BookService {
 			return new ResponseEntity<BookResponse> (response, HttpStatus.FOUND);
 		}else {
 			return null;
+		}
+	}
+
+	public Boolean checkForPresence(int bookId) {
+		Optional<Book> optional = dao.getBookById(bookId);
+		if(optional.isPresent()) {
+			return true;
+		}else {
+			throw new BookNotFoundByIdException("Failed to find the Book!!");
 		}
 	}
 }

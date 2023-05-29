@@ -32,4 +32,9 @@ public class BookController {
 		return bookService.getBookById(bookId);
 	}
 	
+	@GetMapping("/check/{bookId}")
+	public Boolean checkForPresence(@PathVariable int bookId) {
+		return bookService.checkForPresence(bookId);
+	}
+	
 }
