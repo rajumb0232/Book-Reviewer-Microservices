@@ -44,4 +44,13 @@ public class UserService {
 			throw new UserNotFoundByIdException("Failed to find User!!");
 		}
 	}
+
+	public Boolean checkForPresence(int userId) {
+		Optional<User> optional = dao.getUserById(userId);
+		if(optional.isPresent()) {
+			return true;
+		}else {
+			throw new UserNotFoundByIdException("Failed to find User!!");
+		}
+	}
 }

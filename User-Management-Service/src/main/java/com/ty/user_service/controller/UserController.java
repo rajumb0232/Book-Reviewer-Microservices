@@ -32,4 +32,9 @@ public class UserController {
 	public ResponseEntity<UserResponse> getUserById(@PathVariable int userId){
 		return service.getUserById(userId);
 	}
+	
+	@GetMapping("/check/{userId}")
+	public Boolean checkForPresence(@PathVariable int userId){
+		return service.checkForPresence(userId);
+	}
 }
